@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    config.vm.define "cass1"
+    config.vm.box = "centos.6.6"
+    config.vm.boot_timeout = 600
+    config.vm.network :private_network, ip: "192.168.100.10"
+    hostname = "cass1.example.local"
+
+    config.vm.provider :virtualbox do |v, override|
+        v.gui = true
+        v.customize ["modifyvm", :id, "--memory", 2048]
+        v.customize ["modifyvm", :id, "--cpus", 2]
+    end
+
+end
